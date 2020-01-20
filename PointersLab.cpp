@@ -4,6 +4,23 @@
 #include <iostream>
 
 void PassByValue(int value);
+void PassByRef(int& value);
+
+class Person
+{
+public:
+    Person()
+    {
+    }
+
+    ~Person()
+    {
+    }
+
+private:
+
+};
+
 
 int main()
 {
@@ -14,26 +31,52 @@ int main()
 
     num1 = 3;
     num = 5;
+    std::cout << "Initial Values:"
+        << std::endl;
+    std::cout << "num1 is " << num1 << std::endl;
+    std::cout << "num is " << num << std::endl;
+    std::cout << "pNum is " << pNum << std::endl;
+    // Passing num1 by value
     PassByValue(num1);
+    std::cout << "Back in Main, num1 is now: "
+        << num1
+        << std::endl;
+
+    // Passing pNum reference varialbe by reference
+    PassByRef(pNum);
+    std::cout << "Inside Main again pNum is now: "
+        << pNum
+        << std::endl;
     return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
 
 void PassByValue(int value)
 {
     std::cout << "In PassByValue function"
         << std::endl;
     std::cout << "The value inside this function is: "
+        << value
+        << std::endl;
+    value++;
+    std::cout << "Incrementing Value inside function... "
+        << std::endl;
+    std::cout << "Value inside the function is: "
+        << value
+        << std::endl;
+    return;
+}
+
+void PassByRef(int& value)
+{
+    std::cout << "In PassByReference function"
+        << std::endl;
+    std::cout << "In function value is: "
+        << value
+        << std::endl;
+    value += 50;
+    std::cout << "Increasing reference variable inside function by 50"
+        << std::endl;
+    std::cout << "Value inside function is: "
         << value
         << std::endl;
     return;
