@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <string>
 
 void PassByValue(int value);
 void PassByRef(int& value);
@@ -9,8 +10,12 @@ void PassByRef(int& value);
 class Person
 {
 public:
-    Person()
+    std::string Name;
+    int Height;
+    int Weight;
+    Person(std::string name)
     {
+        Name = name;
     }
 
     ~Person()
@@ -18,9 +23,10 @@ public:
     }
 
 private:
-
+       
 };
 
+void ModifyPerson(Person& person);
 
 int main()
 {
@@ -46,6 +52,26 @@ int main()
     PassByRef(pNum);
     std::cout << "Inside Main again pNum is now: "
         << pNum
+        << std::endl;
+    std::cout << "Passing pNum to PassByValue "
+        << pNum
+        << " is the current value"
+        << std::endl;
+    PassByValue(pNum);
+    std::cout << "Back in main, pNum is "
+        << pNum
+        << std::endl;
+    Person person("Fred");
+    person.Height = 218;
+    person.Weight = 80;
+    std::cout << "My person class..." << std::endl
+        << "Name:\t" << person.Name << std::endl
+        << "Height:\t" << person.Height << "cm" << std::endl
+        << "Weight\t" << person.Weight << "Kg" << std::endl;
+    
+    ModifyPerson(person);
+    std::cout << "Changed name: "
+        << person.Name
         << std::endl;
     return 0;
 }
@@ -79,5 +105,10 @@ void PassByRef(int& value)
     std::cout << "Value inside function is: "
         << value
         << std::endl;
+    return;
+}
+
+void ModifyPerson(Person& person) {
+    person.Name = "Herbert";
     return;
 }
